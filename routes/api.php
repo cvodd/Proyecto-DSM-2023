@@ -26,9 +26,11 @@ Route::post('login',[Authcontroller::class,'login']);
 
 
 route::middleware('jwt.verify')->group(function (){
-    Route::get('users',[UserController::class,'index']);
+    //Route::get('users',[UserController::class,'index']);
+    //route::post('post', [PostController::class,'store']);
+
 
 });
 //Route::post('register',[Authcontroller::class,'register']);
-
+Route::get('users',[UserController::class,'index']);
 route::post('post', [PostController::class,'store']);

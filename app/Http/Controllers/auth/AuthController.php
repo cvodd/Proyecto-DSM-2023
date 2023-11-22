@@ -56,13 +56,17 @@ class AuthController extends Controller
                 ]);
 
             }
+            $user =auth()->user();
         } catch (JWTException $e) {
             return response()->json([
                 'error' =>'token no creado'
             ], 500);
         }
 
-        return response()->json(compact(('token')));
+        return response()->json([
+            'token' => $token,
+            'user' =>  $user,
+        ]);
 
     }
     public function index()
