@@ -38,17 +38,17 @@ class RegisterRequest extends FormRequest
     {
         return[
             'name.required' => 'El nombre es requerido',
-            'name.min' => 'El nombre debe tener al menos 5 caracteres',
+            'name.min' => 'El nombre debe tener al menos 5 carácteres',
             'email.required' => 'El email es requerido',
-            'email.email' => 'El email debe ser valido',
+            'email.email' => 'El email debe ser válido',
             'password.required' => 'La contraseña es requerida',
-            'password.min' => 'La contraseña debe tener al menos 8 caracteres',
+            'password.min' => 'La contraseña debe tener al menos 8 carácteres',
             'userName.required' => 'El nombre de usuario es requerido',
-            'userName.min' => 'El nombre de usuario debe tener al menos 4 caracteres',
+            'userName.min' => 'El nombre de usuario debe tener al menos 4 carácteres',
             'lastName.required' => 'El apellido es requerido',
-            'lastName.min' => 'El apellido debe tener al menos 5 caracteres',
+            'lastName.min' => 'El apellido debe tener al menos 5 carácteres',
             'birthDate.required' => 'La fecha de nacimiento es requerida',
-            'birthDate.date' => 'La fecha de nacimiento debe ser valida',
+            'birthDate.date' => 'La fecha de nacimiento debe ser válida',
         ];
     }
 
