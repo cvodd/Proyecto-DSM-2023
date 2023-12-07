@@ -38,6 +38,7 @@
                 <div class="card text-center text-bg-light">
                     <div class="card-body">
                         <h3 class="card-title">Publicación con mayor repercusión en la red social</h3>
+                        <hr>
                         @if ($mostPopularPost)
                             <p class="card-text">{{ $mostPopularPost->title }}</p>
                             <p class="card-text">Likes: {{ $mostPopularPost->likesCount }}</p>

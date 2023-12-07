@@ -13,7 +13,6 @@ class DashboardController extends Controller
     //
     public function index()
     {
-
         try {
             // Fetch all posts
             $posts = Post::all();
@@ -40,16 +39,15 @@ class DashboardController extends Controller
             return view('layouts.dashboard', compact('numberOfPosts', 'numberOfDisabledUsers','numberOfActiveUsers' ,'mostPopularPost'));
 
         } catch (QueryException $e) {
-            return view('error', ['message' => 'No se pudo conectar a la base de datos.']);
+            return redirect()->route('errorDB');
         }
-
-
-
-        // I want to search for all the posts in the database
-        // and display the post with the most likes and comments
-        // and display it on the dashboard
-
-
-        //return view('layouts.dashboard');
     }
+
+
+    public function errorDB()
+    {
+        return view('errors.error', ['message' => 'No se pudo conectar a la base de datos.']);
+    }
+
+
 }

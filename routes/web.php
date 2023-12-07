@@ -16,3 +16,6 @@ use App\Http\Controllers\DashboardController;
 
 Route::redirect('/', '/dashboard');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/error', [DashboardController::class, 'errorDB'])->name('errorDB');
+
+
