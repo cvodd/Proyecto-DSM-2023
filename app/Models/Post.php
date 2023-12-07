@@ -16,8 +16,12 @@ class Post extends Model
         'likesCount',
         'comments',
 
-
-
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

@@ -40,7 +40,7 @@ class DashboardController extends Controller
             return view('layouts.dashboard', compact('numberOfPosts', 'numberOfDisabledUsers','numberOfActiveUsers' ,'mostPopularPost'));
 
         } catch (QueryException $e) {
-            return view('error', ['message' => 'Database connection could not be established.']);
+            return view('error', ['message' => 'No se pudo conectar a la base de datos.']);
         }
 
 
@@ -49,7 +49,7 @@ class DashboardController extends Controller
         // and display the post with the most likes and comments
         // and display it on the dashboard
 
-        
+
         //return view('layouts.dashboard');
     }
 }
