@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
@@ -38,12 +39,14 @@ class DashboardController extends Controller
             $numberOfActiveUsers = $activeUsers->count();
 
             // Fetch the post with the most likes and comments
-            $mostPopularPost = Post::orderBy('likes', 'desc')->orderBy('comments', 'desc')->first();
+            $mostPopularPost = Post::orderBy('likesCount', 'desc')->orderBy('comments', 'desc')->first();
 
             // Pass the data to the view
             return view('layouts.dashboard', compact('numberOfPosts', 'numberOfDisabledUsers','numberOfActiveUsers' ,'mostPopularPost'));
 
         } catch (QueryException $e) {
+            Log::info($e->getMessage());
+
             return redirect()->route('errorDB');
         }
     }
