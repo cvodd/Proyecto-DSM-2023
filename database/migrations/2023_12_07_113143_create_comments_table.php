@@ -16,12 +16,8 @@ return new class extends Migration
             $table->string('text');
             $table->timestamps();
             //User reference and post reference:
-
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('post_id');
-
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('post_id')->references('id')->on('posts');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('post_id')->constrained('posts');
 
         });
     }
@@ -31,6 +27,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['post_id']);
+        });
         Schema::dropIfExists('comments');
     }
 };
