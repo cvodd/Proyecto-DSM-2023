@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Requests\Post\StorePostRequest;
 use App\Http\Requests\Post\UpdatePostRequest;
 use Tymon\JWTAuth\Contracts\Providers\JWT;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class PostController extends Controller
@@ -15,10 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return response()->json([
-            'posts' => $posts
-        ]);
+        $posts = Post::orderBy('created_at', 'desc')->get();
+
+        return response()->json($posts, 200);
     }
 
     /**
@@ -27,22 +27,33 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
 
-        $token = $request->header('Authorization');
+        try {
+            $token = $request->header('Authorization');
 
-        $user =JWTAuth::toUser($token);
+            // Obtenemos al usuario autenticado
+            $user = JWTAuth::toUser($token);
 
-        $post = Post::create([
-            'title' =>  $request->title,
-            'description' => $request->description,
-            'pathPhoto' => $request->pathPhoto,
-            'likesCount' => $request->likesCount,
-            'comments' => $request->comments,
-            'user_id' => $user->id,
+            // Crear el post
+            $post = Post::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'pathPhoto' => $request->pathPhoto,
+                'likesCount' => 0,
+                'comments' => 0,
+                'user_id' => $user->id,
+            ]);
 
-        ]);
-        return response()->json([
-            'post' => $post,
-        ], 200);
+            // Retornamos la respuesta
+            return response()->json([
+                'post' => $post,
+            ], 200);
+        } catch (JWTException $e) {
+            // Retornamos la respuesta
+            return response()->json([
+                'message' => 'Oops ha ocurido un error...',
+            ], 500);
+        }
+
     }
 
     /**

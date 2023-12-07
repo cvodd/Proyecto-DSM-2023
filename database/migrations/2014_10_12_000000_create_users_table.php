@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('userName')->unique();
             $table->string('status')->default('active');
             $table->date('birthDate');
+            $table->integer('role');
             $table->timestamps();
         });
     }
