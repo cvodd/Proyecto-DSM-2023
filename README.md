@@ -1,5 +1,4 @@
 
-# Backend
 
 ## IMPORTANTE
 Debe tener previamente instalado composer y PHP >= 8.1.12 v para evitar futuros errores u problemas, una vez haya clonado el proyecto.
