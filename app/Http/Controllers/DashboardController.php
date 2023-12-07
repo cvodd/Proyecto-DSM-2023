@@ -10,7 +10,12 @@ use Illuminate\Database\QueryException;
 
 class DashboardController extends Controller
 {
-    //
+
+    /*
+     * Show the dashboard view.
+     *
+     *
+     */
     public function index()
     {
         try {
@@ -43,11 +48,14 @@ class DashboardController extends Controller
         }
     }
 
-
+    /*
+     * Show the Database error.
+     *
+     *
+     */
     public function errorDB()
     {
         return view('errors.error', ['message' => 'No se pudo conectar a la base de datos.']);
     }
-
 
 }
