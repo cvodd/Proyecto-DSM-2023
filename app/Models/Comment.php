@@ -15,15 +15,20 @@ class Comment extends Model
     ];
 
 
+    /*
+     * Get the user that owns the comment.
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    /*
+     * Get the post that owns the comment.
+     */
     public function post()
     {
         return $this->belongsTo(Post::class);
-
     }
 
 }
