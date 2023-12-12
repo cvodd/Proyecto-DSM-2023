@@ -44,10 +44,10 @@ class DashboardController extends Controller
             // Pass the data to the view
             return view('layouts.dashboard', compact('numberOfPosts', 'numberOfDisabledUsers','numberOfActiveUsers' ,'mostPopularPost'));
 
-        } catch (QueryException $e) {
-            Log::info($e->getMessage());
-
-            return redirect()->route('errorDB');
+        } catch (QueryException $exception) {
+            //Log::info($e->getMessage());
+            throw new \Exception($exception->getMessage());
+            //return redirect()->route('errorDB');
         }
     }
 

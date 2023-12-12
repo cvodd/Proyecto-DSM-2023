@@ -1,13 +1,8 @@
 @extends('layouts.app')
 @section('title')
-    Menu
+    Dashboard
 @endsection
 @section('content')
-
-// There will be a box with the number of posts. The box is in blue color.
-// There will be a box with the number of users inhabilitated by the admin. The box is in red color.
-// The will be a box with the post with the most likes and comments. This is the most popular post of the App.
-
     <div class="container">
         <div class="row">
             <div class="col-sm-3  ">
@@ -40,21 +35,35 @@
                         <h3 class="card-title">Publicación con mayor repercusión en la red social</h3>
                         <hr>
                         @if ($mostPopularPost)
-                            <p class="card-text">{{ $mostPopularPost->title }}</p>
-                            <p class="card-text">Likes: {{ $mostPopularPost->likesCount }}</p>
-                            <p class="card-text">Comentarios: {{ $mostPopularPost->comments }}</p>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postModal">
+                                {{ $mostPopularPost->title }}
+                            </button>
+
+                            <div class="modal fade" id = "postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id = "postModalLabel">Detalles de la publicación</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" id = "postModalBody">
+                                            <p>{{ $mostPopularPost->title }}</p>
+                                            <p>{{ $mostPopularPost->user->name }}</p>
+                                            <p>Descripción: {{ $mostPopularPost->description }}</p>
+                                            <p >Likes: {{ $mostPopularPost->likesCount }}</p>
+                                            <p >Comentarios: {{ $mostPopularPost->comments }}</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @else
                             <p class="card-text">No hay publicaciones disponibles.</p>
                         @endif
                     </div>
                 </div>
             </div>
+
         </div>
-
-
-
     </div>
-
-
-
 @endsection
