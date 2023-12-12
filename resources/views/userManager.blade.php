@@ -4,7 +4,9 @@
 @endsection
 @section('content')
     <div class="container ">
-        <h1 class="text-center mb-4">Administrador de usuarios</h1>
+        <div class="text-center mb-4 rounded customWhite">
+            <h1>Administración de usuarios</h1>
+        </div>
         <form action="{{ route('admin.searchUser') }}" method="GET" novalidate class="mb-4">
             @csrf
             <div class="d-flex justify-content-center">

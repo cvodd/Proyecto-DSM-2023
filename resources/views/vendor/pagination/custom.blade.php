@@ -3,11 +3,9 @@
     <dir class="row">
         <div class="col align-self-center">
             <div class="pagination-info">
-                Mostrando de {{ $paginator->firstItem() }} a {{ $paginator->lastItem() }} de un total de {{ $paginator->total() }} resultados.
+                Mostrando {{ $paginator->firstItem() }} a {{ $paginator->lastItem() }} de un total de {{ $paginator->total() }} resultados.
             </div>
         </div>
-
-
     </dir>
 
     <div class="row">
@@ -32,7 +30,5 @@
 
             </ul>
         </div>
-
     </div>
-
 @endif

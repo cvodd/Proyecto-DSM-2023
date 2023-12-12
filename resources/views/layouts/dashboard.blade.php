@@ -6,26 +6,26 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3  ">
-                <div class="card text-center text-bg-primary">
-                    <div class="card-body">
-                        <p class="card-title"> {{ $numberOfPosts }}</p>
-                        <h3 class="card-text">Número de Posts</h3>
+                <div class="card text-center text-bg-primary h-75">
+                    <div class="card-body ">
+                        <h3 class="card-title mt-4"> {{ $numberOfPosts }}</h3>
+                        <h3 class="card-text">Publicaciones</h3>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3  ">
-                <div class="card text-center text-bg-success">
-                    <div class="card-body">
-                        <p class="card-title"> {{ $numberOfActiveUsers }}</p>
-                        <h3 class="card-text">Número de usuarios habilitados</h3>
+                <div class="card text-center text-bg-success h-75 ">
+                    <div class="card-body ">
+                        <h3 class="card-title mt-2"> {{ $numberOfActiveUsers }}</h3>
+                        <h3 class="card-text">Usuarios habilitados</h3>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3  ">
-                <div class="card text-center text-bg-danger">
+                <div class="card text-center text-bg-danger h-75">
                     <div class="card-body">
-                        <p class="card-title"> {{ $numberOfDisabledUsers }}</p>
-                        <h3 class="card-text">Número de usuarios deshabilitados</h3>
+                        <h3 class="card-title mt-2"> {{ $numberOfDisabledUsers }}</h3>
+                        <h3 class="card-text">Usuarios deshabilitados</h3>
                     </div>
                 </div>
             </div>
