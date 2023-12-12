@@ -16,7 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::whereHas('user', function ($query) {
+            $query->where('status', 'active');
+        })->orderBy('created_at', 'desc')->get();
 
         return response()->json($posts, 200);
     }

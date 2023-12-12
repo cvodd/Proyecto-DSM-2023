@@ -8,7 +8,7 @@
         <form action="{{ route('admin.searchUser') }}" method="GET" novalidate class="mb-4">
             @csrf
             <div class="d-flex justify-content-center">
-                <input type="text" name="search" class="form-control w-25" placeholder="Buscar usuarios...">
+                <input type="text" name="search" class="form-control w-25" placeholder="Ingrese nombre y/o apellido...">
                 <button type="submit" class="btn btn-primary col-auto ms-4 ">Buscar usuario</button>
                 <a href="{{ route('admin') }}" class="btn btn-secondary col-auto ms-4">Refrescar</a>
             </div>
