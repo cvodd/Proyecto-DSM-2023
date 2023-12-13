@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Administrador de usuarios
+    Administrar usuarios
 @endsection
 @section('content')
     <div class="container ">

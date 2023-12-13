@@ -15,14 +15,14 @@ use App\Http\Controllers\AdminController;
 */
 
 
-Route::redirect('/', '/dashboard');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/error', [DashboardController::class, 'errorDB'])->name('errorDB');
+Route::redirect('/', '/login');
+Route::get('/login', [DashboardController::class, 'login'])->name('login');
+Route::post('/login', [DashboardController::class, 'loginAuth'])->name('loginAuth');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-
-Route::put('/admin/toggleUser/{id}', [AdminController::class, 'toggleUser'])->name('admin.update');
-Route::get('/admin/getUsers', [AdminController::class, 'searchUser'])->name('admin.searchUser');
-
-
-
+Route::group(['middleware' => 'admin'], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::put('/admin/toggleUser/{id}', [AdminController::class, 'toggleUser'])->name('admin.update');
+    Route::get('/admin/getUsers', [AdminController::class, 'searchUser'])->name('admin.searchUser');
+    Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
+});
