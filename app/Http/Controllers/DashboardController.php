@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Models\Post;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
-use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -51,27 +50,18 @@ class DashboardController extends Controller
         }
     }
 
-    public function loginAuth(LoginRequest $request)
+    public function loginAuth(Request $request)
     {
-        try {
-            //code...
-            $validated = $request->validated();
+        // Validar la información
+        $this->validate($request, [
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ], [
+            'email.required' => 'El correo electrónico es requerido',
+            'email.email' => 'El correo electrónico debe ser válido',
+            'password.required' => 'La contraseña es requerida',
+        ]);
 
-            if(!auth()->attempt($validated->only('email', 'password'), $validated->remember) )
-            {
-                return back()->with('message', 'Usuario no registrado o contraseña incorrecta');
-            }
-            // Check if the authenticated user has a role of 2
-            if(auth()->user()->role != 2) {
-                // Log out the user
-                auth()->logout();
-                // Redirect back with an error message
-                return back()->with('message', 'Solamente el administrador puede acceder a esta página.');
-            }
-            return redirect()->route('dashboard');
-        } catch (\Throwable $exception) {
-            throw new \Exception($exception->getMessage());
-        }
     }
 
     public function logout()

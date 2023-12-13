@@ -13,17 +13,15 @@
                     <div class="card-body rounded-5">
                         <form action="{{ route('loginAuth') }}" method="POST" novalidate>
                             @csrf
-                            @if (session('message'))
-                                <div class=" my-2 rounded-lg text-lg p-2">
-                                    {{ session('message') }}
-                                </div>
-                            @endif
 
                             <div class="mb-3 font-weight-bold text-3xl ">
                                 <label for="correo" class="form-label">Correo electrónico</label>
                                 <input type="email" placeholder="nombre@ejemplo.com" id="email" name="email" class="form-control">
                                 @error('email')
-                                    <p class="my-2 rounded-lg text-lg p-2">{{ $message }}</p>
+                                    <div class="my-2 alert alert-danger alert-dismissible fade show p-2" role="alert">
+                                        <p>{{ $message }}</p>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                                    </div>
                                 @enderror
                             </div>
 
@@ -31,14 +29,25 @@
                                 <label for="contraseña" class="form-label">Contraseña</label>
                                 <input type="password" placeholder="Ingrese su contraseña" id="password" name="password" class="form-control">
                                 @error('password')
-                                    <p class="textRed my-2 rounded-lg text-lg p-2">{{ $message }}</p>
+                                    <div class="my-2 alert alert-danger alert-dismissible fade show p-2" role="alert">
+                                        <p>{{ $message }}</p>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                                    </div>
                                 @enderror
                             </div>
+
+                            @if (session('message'))
+                                <div class="my-2 alert alert-danger alert-dismissible fade show p-2" role="alert">
+                                    {{ session('message') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                                </div>
+                            @endif
 
                             <div class= "text-center rounded-5">
                                 <button type="submit" class="formButton btn btn-primary" >Iniciar Sesión</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
