@@ -6,7 +6,7 @@ Debe tener previamente instalado composer y PHP >= 8.1.12 v para evitar futuros 
 Una vez clonado el repositorio, crear una base de datos en mysql.
 
 ## Instalación
-
+Abrir el proyecto en el Visual Studio Code o su editor favorito. Abre una nueva consola.
 Ejecuta el siguiente comando para poder instalar composer en el proyecto.
 ```bash
 composer install
@@ -18,7 +18,9 @@ copy .env.example .env
 Este comando establecerá la APP_KEY en nuestro archivo .env
 ```bash
 php artisan key:generate
+php artisan jwt:secret
 ```
+
 
 Cambiamos los siguientes parámetros en el .env con las variables de entorno de la base de datos:
 ```bash
@@ -41,6 +43,6 @@ php artisan view:clear
 ```
 Ahora procederemos a ejecutar el Sistema Web con los siguientes comandos:
 ```bash
-php artisan serve
+php artisan serve --host=0.0.0.0
 ```
-
+Ingresamos en el navegador web con localhost:8000/
