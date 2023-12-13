@@ -29,6 +29,8 @@ class AuthController extends Controller
             'lastName' => $request->lastName,
             'userName' => $request->userName,
             'birthDate' => $request->birthDate,
+            'role' =>1,
+            'status' => 'active',
             'email' => $request->email,
             'password' =>$request->password,
         ]);
@@ -78,13 +80,12 @@ class AuthController extends Controller
 
             if (!$token) {
                 return response()->json([
-                    'error', 'Token no proporcionado.'
+                    'error', 'Token no proporcionado.',
                 ], 400);
             }
 
             // Verificar si el token es valido
             $user = JWTAuth::parseToken()->authenticate();
-
 
             // Obtener el token asociado al usuario
             $ValidateToken = JWTAuth::fromUser($user);
@@ -94,7 +95,7 @@ class AuthController extends Controller
                 'message' => 'Token válido',
                 'user' => $user,
                 'token' => $ValidateToken,
-            ]);
+            ], 200);
         } catch (JWTException $e) {
             // Manejo de excepciones
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
@@ -107,7 +108,7 @@ class AuthController extends Controller
                         'message' => 'Token refrescado',
                         'user' => $user,
                         'token' => $newToken,
-                    ]);
+                    ], 200);
                 } catch (JWTException $e) {
                     // No se pudo refrescar el token
                     return response()->json(['error' => 'No se pudo refrescar el token'], 401);
@@ -118,7 +119,6 @@ class AuthController extends Controller
             return response()->json(['error' => 'Token inválido'], 401);
         }
     }
-
     public function index()
     {
         //

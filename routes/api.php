@@ -39,5 +39,6 @@ Route::middleware('jwt.verify')->group(function (){
 //Route::post('register',[Authcontroller::class,'register']);
 Route::get('users',[UserController::class,'index']);
 Route::get('posts', [PostController::class, 'index']);
+Route::put('postsLike/{id}', [PostController::class, 'updateLikes']);
 
 
