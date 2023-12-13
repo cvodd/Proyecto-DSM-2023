@@ -15,7 +15,7 @@ use App\Http\Controllers\AdminController;
 */
 
 
-Route::redirect('/', '/login');
+Route::redirect('/', '/dashboard');
 Route::get('/login', [DashboardController::class, 'login'])->name('login');
 Route::post('/login', [DashboardController::class, 'loginAuth'])->name('loginAuth');
 
@@ -24,10 +24,10 @@ Route::post('/login', [DashboardController::class, 'loginAuth'])->name('loginAut
 // });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::put('/admin/toggleUser/{id}', [AdminController::class, 'toggleUser'])->name('admin.update');
-    Route::get('/admin/getUsers', [AdminController::class, 'searchUser'])->name('admin.searchUser');
-    Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::put('/admin/toggleUser/{id}', [AdminController::class, 'toggleUser'])->name('admin.update');
+Route::get('/admin/getUsers', [AdminController::class, 'searchUser'])->name('admin.searchUser');
+Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 
 
 

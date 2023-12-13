@@ -24,13 +24,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        @auth
+
                         <li class="nav-item ms-5">
                             <a class="nav-link" href="{{ route('admin') }}">Administrar usuarios</a>
                         </li>
-
+                        @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}">Cerrar sesión</a>
+                            {{-- <a class="nav-link" href="{{ route('logout') }}">Cerrar sesión</a> --}}
                         </li>
                         @endauth
                     </ul>
