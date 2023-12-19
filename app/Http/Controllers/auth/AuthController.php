@@ -65,7 +65,11 @@ class AuthController extends Controller
                 'error' =>'token no creado'
             ], 500);
         }
-
+        if($user->status == 'disabled'){
+            return response()->json([
+                'message' => 'El usuario se encuentra inactivo.'
+            ]);
+        }
         return response()->json([
             'token' => $token,
             'user' =>  $user,
@@ -119,9 +123,22 @@ class AuthController extends Controller
             return response()->json(['error' => 'Token inválido'], 401);
         }
     }
-    public function index()
+    public function getUser($request)
     {
-        //
+        try {
+            $token = $request->header('Authorization');
+
+            // Obtenemos al usuario autenticado
+            $user = JWTAuth::toUser($token);
+            response()->json([
+                'user' => $user,
+            ], 200);
+        } catch (JWTException $e) {
+            // Retornamos la respuesta
+            return response()->json([
+                'message' => 'Oops ha ocurido un error...',
+            ], 500);
+        }
     }
 
     /**

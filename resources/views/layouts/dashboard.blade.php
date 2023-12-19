@@ -47,8 +47,8 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body" id = "postModalBody">
-                                            <p>{{ $mostPopularPost->title }}</p>
-                                            <p>{{ $mostPopularPost->user->name }}</p>
+                                            <p>Título: {{ $mostPopularPost->title }}</p>
+                                            <p>Nombre de usuario:{{ $mostPopularPost->user->name }}</p>
                                             <p>Descripción: {{ $mostPopularPost->description }}</p>
                                             <p >Likes: {{ $mostPopularPost->likesCount }}</p>
                                             <p >Comentarios: {{ $mostPopularPost->comments }}</p>

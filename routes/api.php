@@ -34,6 +34,7 @@ Route::middleware('jwt.verify')->group(function (){
     // Routes to posts
     //Route::get('posts', [PostController::class, 'index']);
     Route::post('createPost', [PostController::class, 'store']);
+    Route::get('user', [AuthController::class, 'getUser']);
 
 });
 //Route::post('register',[Authcontroller::class,'register']);
